@@ -1,7 +1,3 @@
-/**
- * @jest-environment jsdom
- */
-
 import markAs from '../mark-as';
 import { attrs, events } from '../../index';
 

@@ -13,4 +13,4 @@ export interface JQueryDuckTyping {
 	toArray(): (HTMLElement | any)[];
 }
 
-export type RootElement = string | Element | NodeList | JQueryDuckTyping;
+export type RootElement = string | Element | Element[] | NodeList | JQueryDuckTyping;
