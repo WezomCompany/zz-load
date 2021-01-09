@@ -8,4 +8,9 @@ export interface Options {
 	onError?(element: Element, resource?: string): void;
 }
 
-export type RootElement = string | Element | NodeList | JQuery;
+export interface JQueryDuckTyping {
+	jquery: string;
+	toArray(): (HTMLElement | any)[];
+}
+
+export type RootElement = string | Element | NodeList | JQueryDuckTyping;

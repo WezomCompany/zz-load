@@ -2,7 +2,6 @@ import attrs from './config/attrs';
 import events from './config/events';
 import check from './utils/check';
 import getElements from './utils/get-elements';
-import mergeOptions from './utils/merge-options';
 import markAs from './utils/mark-as';
 import sanitize from './utils/sanitize';
 import { Options, RootElement } from './types';
@@ -142,7 +141,10 @@ const _onIntersection = (options: Options): IntersectionObserverCallback => (
 // -----------------------------------------------------------------------------
 
 export default function (elements: RootElement, userOptions: Options = {}) {
-	const options = mergeOptions(_defaultOptions, userOptions);
+	const options = {
+		..._defaultOptions,
+		...userOptions
+	};
 	let observer: IntersectionObserver | null = null;
 
 	if (window.IntersectionObserver) {
@@ -170,7 +172,10 @@ export default function (elements: RootElement, userOptions: Options = {}) {
 		},
 		triggerLoad(triggerElements: RootElement, triggerOptions: Options = {}): void {
 			const list = getElements(elements);
-			const loadOptions = mergeOptions(options, triggerOptions);
+			const loadOptions = {
+				...options,
+				...triggerOptions
+			};
 			for (let i = 0; i < list.length; i++) {
 				const element = list[i];
 				if (check(element, 'processed')) {

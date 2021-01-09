@@ -1,6 +1,7 @@
-import { RootElement } from '../types';
+import { JQueryDuckTyping, RootElement } from '../types';
 
-const isJQuery = (element: any): element is JQuery => !!(element && element.jquery);
+const isJQuery = (element: any): element is JQueryDuckTyping =>
+	!!(element && element.jquery);
 
 export default function (element: RootElement) {
 	if (element instanceof window.Element) {
