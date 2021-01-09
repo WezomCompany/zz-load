@@ -35,7 +35,7 @@ const _load = (element: Element, options: Options, asPromise?: boolean) => {
 		}
 
 		function loadActions(loadEvent?: Event, resource?: string): void {
-			if (options.clearSourceAttrs) {
+			if (options.clearSourceAttrs && !check(element, 'inView')) {
 				sanitize(element);
 			}
 			markAs(element, attrs.loaded, events.loaded, { loadEvent, resource });
@@ -113,29 +113,6 @@ const _load = (element: Element, options: Options, asPromise?: boolean) => {
 	}
 };
 
-const _onIntersection = (options: Options): IntersectionObserverCallback => (
-	entries: IntersectionObserverEntry[],
-	observer: IntersectionObserver
-): void => {
-	entries.forEach((entry) => {
-		const element = entry.target;
-		const inViewType = element.hasAttribute(attrs.sourceInview);
-
-		if (entry.intersectionRatio > 0 || entry.isIntersecting) {
-			if (inViewType) {
-				markAs(element, attrs.inView, events.inView, { visible: true });
-			} else {
-				observer.unobserve(element);
-				_load(element, options);
-			}
-		} else {
-			if (inViewType && check(element, 'inView')) {
-				markAs(element, attrs.inView, events.inView, { visible: false }, true);
-			}
-		}
-	});
-};
-
 // -----------------------------------------------------------------------------
 // Public
 // -----------------------------------------------------------------------------
@@ -148,10 +125,43 @@ export default function (elements: RootElement, userOptions: Options = {}) {
 	let observer: IntersectionObserver | null = null;
 
 	if (window.IntersectionObserver) {
-		observer = new window.IntersectionObserver(_onIntersection(options), {
-			rootMargin: options.rootMargin,
-			threshold: options.threshold
-		});
+		observer = new window.IntersectionObserver(
+			(
+				entries: IntersectionObserverEntry[],
+				observer: IntersectionObserver
+			): void => {
+				entries.forEach((entry) => {
+					const element = entry.target;
+					const inViewType = element.hasAttribute(attrs.sourceInview);
+
+					if (entry.intersectionRatio > 0 || entry.isIntersecting) {
+						if (inViewType) {
+							markAs(element, attrs.inView, events.inView, {
+								visible: true
+							});
+							_load(element, options);
+						} else {
+							observer.unobserve(element);
+							_load(element, options);
+						}
+					} else {
+						if (inViewType && check(element, 'inView')) {
+							markAs(
+								element,
+								attrs.inView,
+								events.inView,
+								{ visible: false },
+								true
+							);
+						}
+					}
+				});
+			},
+			{
+				rootMargin: options.rootMargin,
+				threshold: options.threshold
+			}
+		);
 	}
 
 	return {
@@ -163,11 +173,11 @@ export default function (elements: RootElement, userOptions: Options = {}) {
 					continue;
 				}
 				markAs(element, attrs.observed, events.observed);
-				if (observer !== null) {
+				if (observer === null) {
+					_load(element, options);
+				} else {
 					observer.observe(element);
-					continue;
 				}
-				_load(element, options);
 			}
 		},
 		triggerLoad(triggerElements: RootElement, triggerOptions: Options = {}): void {

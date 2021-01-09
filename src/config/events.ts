@@ -3,5 +3,5 @@ export default {
 	processed: 'zzload:processed',
 	loaded: 'zzload:loaded',
 	failed: 'zzload:failed',
-	inView: 'zzload:inView'
+	inView: 'zzload:in-view'
 };

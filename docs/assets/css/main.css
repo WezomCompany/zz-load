@@ -48,27 +48,31 @@ img {
 	color: #000;
 }
 
-.demo-image {
-	background: #000;
-	position: relative;
+.demo-block {
+    background: #000;
+    position: relative;
 }
 
-.demo-image::before {
-	content: '';
-	position: absolute;
-	top: -8px;
-	right: -8px;
-	bottom: -8px;
-	left: -8px;
-	border: 1px solid rgba(255, 255, 255, .3);
-	pointer-events: none;
+.demo-block::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    pointer-events: none;
 }
 
-.demo-image img {
-	display: inline-block;
-	vertical-align: top;
-	max-width: 100%;
-	height: auto;
+.demo-block__img {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+    height: auto;
+}
+
+.demo-block__inner {
+    min-height: 120px;
 }
 
 .fade-in {

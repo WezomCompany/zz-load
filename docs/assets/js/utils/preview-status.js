@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-	var elements = document.querySelectorAll('.zzload');
+	var elements = document.querySelectorAll('.js-lazy-load');
 	for (var i = 0; i < elements.length; i++) {
 		each(elements[i]);
 	}
@@ -27,6 +27,9 @@
 		});
 		element.addEventListener('zzload:failed', function () {
 			activate(statusFailed);
+		});
+		element.addEventListener('zzload:in-view', function (event) {
+			console.warn(element, 'INVIEW', event.detail.visible);
 		});
 	}
 

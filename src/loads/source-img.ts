@@ -19,6 +19,10 @@ export default function (
 			element.src = resource;
 			loadActions(event, resource);
 		});
+		if (srcset) {
+			img.srcset = srcset;
+		}
+		img.src = resource;
 	} else {
 		element.addEventListener('error', (event) => errorActions(event, resource));
 		element.addEventListener(
