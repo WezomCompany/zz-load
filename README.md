@@ -9,7 +9,7 @@
 
 | Statements                | Branches                | Functions                | Lines                |
 | ------------------------- | ----------------------- | ------------------------ | -------------------- |
-| ![Statements](https://img.shields.io/badge/Coverage-Unknown%25-brightgreen.svg) | ![Branches](https://img.shields.io/badge/Coverage-Unknown%25-brightgreen.svg) | ![Functions](https://img.shields.io/badge/Coverage-Unknown%25-brightgreen.svg) | ![Lines](https://img.shields.io/badge/Coverage-Unknown%25-brightgreen.svg) |
+| ![Statements](https://img.shields.io/badge/Coverage-22.12%25-red.svg) | ![Branches](https://img.shields.io/badge/Coverage-5.81%25-red.svg) | ![Functions](https://img.shields.io/badge/Coverage-9.09%25-red.svg) | ![Lines](https://img.shields.io/badge/Coverage-21.58%25-red.svg) |
 
 ---
 

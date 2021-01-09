@@ -4,8 +4,14 @@ export default function (
 	element: Element,
 	attr: string,
 	event: string,
-	detail: { [p: string]: any } = {}
+	detail?: { [p: string]: any },
+	unMark?: boolean
 ) {
-	element.setAttribute(attr, 'true');
-	element.dispatchEvent(createEvent(event, { ...detail, element }));
+	if (unMark) {
+		element.removeAttribute(attr);
+	} else {
+		element.setAttribute(attr, '');
+	}
+	const eventDetail = detail ? { ...detail, element } : { element };
+	element.dispatchEvent(createEvent(event, eventDetail));
 }

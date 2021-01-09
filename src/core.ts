@@ -130,7 +130,7 @@ const _onIntersection = (options: Options): IntersectionObserverCallback => (
 			}
 		} else {
 			if (inViewType && check(element, 'inView')) {
-				markAs(element, attrs.inView, events.inView, { visible: false });
+				markAs(element, attrs.inView, events.inView, { visible: false }, true);
 			}
 		}
 	});
