@@ -9,9 +9,6 @@ export default function sanitizeAttrs(element: Element) {
 	element.removeAttribute(attrs.sourceIframe);
 	element.removeAttribute(attrs.sourceContainer);
 	if (element instanceof HTMLPictureElement) {
-		element.querySelectorAll('source').forEach((source) => {
-			sanitizeAttrs(source);
-		});
 		element.querySelectorAll('img').forEach((img) => {
 			sanitizeAttrs(img);
 		});
