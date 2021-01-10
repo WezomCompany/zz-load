@@ -1,6 +1,6 @@
 {
   "name": "@wezom/zz-load",
-  "version": "0.0.1-alpha",
+  "version": "0.1.0-beta",
   "description": "Lazy loader based on IntersectionObserver API",
   "main": "dist/index.js",
   "files": [

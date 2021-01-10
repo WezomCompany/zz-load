@@ -6,9 +6,7 @@ export default function (element: HTMLPictureElement): HTMLSourceElement[] {
 		return sourcesAttrs
 			.filter(
 				(attrs): attrs is Record<string, any> =>
-					typeof attrs === 'object' &&
-					attrs !== null &&
-					!Array.isArray(attrs)
+					typeof attrs === 'object' && attrs !== null && !Array.isArray(attrs)
 			)
 			.map((attrs) => {
 				const source = document.createElement('source');

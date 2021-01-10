@@ -5,6 +5,10 @@
 [![NPM package badge](https://img.shields.io/badge/npm-install-orange.svg)](https://www.npmjs.com/package/@wezom/zz-load)
 ![Test and Build status badge](https://github.com/WezomCompany/zz-load/workflows/Test%20and%20Build/badge.svg)
 
+> Lazy loader based on IntersectionObserver API
+
+Live preview: https://wezomcompany.github.io/zz-load/
+
 ## Coverage
 
 | Statements                | Branches                | Functions                | Lines                |
@@ -66,9 +70,21 @@ If you cannot change your bundler config or if you don not want to include _esne
 import zzLoad from '@wezom/zz-load/dist/index.cjs';
 ```
 
+### Usage example
+
+```js
+import zzLoad from '@wezom/zz-load';
+// create and run observer for elements
+const observer = zzLoad('.js-lazy-load');
+observer.observe();
+```
+
+See in action https://wezomcompany.github.io/zz-load/
+
 [▲ Go Top](#) | [▲ Table of Content](#table-of-content)
 
 ---
+
 
 
 
