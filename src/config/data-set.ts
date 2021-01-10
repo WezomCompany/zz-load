@@ -6,6 +6,7 @@ export default {
 	inView: 'zzloadIsInview',
 	sourceImg: 'zzloadSourceImg',
 	sourceSrcSet: 'zzloadSourceSrcset',
+	sourceSources: 'zzloadSourceSources',
 	sourceBgImg: 'zzloadSourceBackgroundImg',
 	sourceImage: 'zzloadSourceImage',
 	sourceIframe: 'zzloadSourceIframe',

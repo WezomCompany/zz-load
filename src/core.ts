@@ -3,7 +3,7 @@ import events from './config/events';
 import check from './utils/check';
 import getElements from './utils/get-elements';
 import markAs from './utils/mark-as';
-import sanitize from './utils/sanitize';
+import sanitizeAttrs from './utils/sanitize-attrs';
 import { Options, RootElement } from './types';
 import loadSourceImg from './loads/source-img';
 import loadSourceBgImg from './loads/source-bg-img';
@@ -36,7 +36,7 @@ const _load = (element: Element, options: Options, asPromise?: boolean) => {
 
 		function loadActions(loadEvent?: Event, resource?: string): void {
 			if (options.clearSourceAttrs && !check(element, 'inView')) {
-				sanitize(element);
+				sanitizeAttrs(element);
 			}
 			markAs(element, attrs.loaded, events.loaded, { loadEvent, resource });
 			if (options.onLoad !== undefined) {

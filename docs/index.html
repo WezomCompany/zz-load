@@ -2,8 +2,14 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Title</title>
-		<meta name="HandheldFriendly" content="True" />
+		<title>@wezom/zz-load</title>
+		<meta
+			name="description"
+			content="Lazy loader based on IntersectionObserver API"
+			<meta
+			name="HandheldFriendly"
+			content="True"
+		/>
 		<meta name="MobileOptimized" content="320" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta
@@ -25,7 +31,7 @@
 		<div class="container">
 			<div class="gap">
 				<h1 id="title" class="title">
-					zz-load <br /><code>&lt;img> examples:</code>
+					@wezom/zz-load
 				</h1>
 				<div class="demo-block">
 					<img
@@ -45,7 +51,7 @@
 
 			<div class="center gap js-preview-status">
 				<div id="simple-img" class="name">
-					<p>simple img</p>
+					<p>Simple img</p>
 					<div class="statuses">
 						<span data-status="observed">observed</span>
 						<span data-status="processed">processed</span>
@@ -59,7 +65,7 @@
 						width="640"
 						height="320"
 						class="js-lazy-load demo-block__img fade-in"
-						data-zzload-source-img="./images/640x320/01.jpg"
+						data-zzload-source-img="https://placeimg.com/640/320/nature"
 						src='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" width="640" height="320"&gt;&lt;/svg&gt;'
 					/>
 				</div>
@@ -76,8 +82,8 @@
 			</div>
 
 			<div class="center gap js-preview-status">
-				<div id="srcset@1.5x" class="name">
-					<p>srcset 1.5x</p>
+				<div id="srcset@2x" class="name">
+					<p>&lt;img> srcset 1.5x, 2x, 3x</p>
 					<div class="statuses">
 						<span data-status="observed">observed</span>
 						<span data-status="processed">processed</span>
@@ -89,11 +95,11 @@
 					<img
 						alt
 						width="640"
-						height="320"
+						height="360"
 						class="js-lazy-load demo-block__img fade-in"
-						data-zzload-source-img="./images/640x320/02.jpg"
-						data-zzload-source-srcset="./images/960x480/02.jpg 1.5x"
-						src='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" width="640" height="320"&gt;&lt;/svg&gt;'
+						data-zzload-source-img="https://via.placeholder.com/640x360.png/ff5400/ffffff?text=640x360+1x"
+						data-zzload-source-srcset="https://via.placeholder.com/960x540.png/ff8328/ffffff?text=960x540+1.5x 1.5x, https://via.placeholder.com/1280x720.png/febe44/000000?text=1280x720+2x 2x, https://via.placeholder.com/1920x1080.png/fed444/000000?text=1920x1080+3x 3x"
+						src='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500"&gt;&lt;/svg&gt;'
 					/>
 				</div>
 				<pre
@@ -109,41 +115,8 @@
 			</div>
 
 			<div class="center gap js-preview-status">
-				<div id="srcset@2x" class="name">
-					<p>srcset 2x</p>
-					<div class="statuses">
-						<span data-status="observed">observed</span>
-						<span data-status="processed">processed</span>
-						<span data-status="loaded">loaded</span>
-						<span data-status="failed">failed</span>
-					</div>
-				</div>
-				<div class="demo-block">
-					<img
-						alt
-						width="640"
-						height="320"
-						class="js-lazy-load demo-block__img fade-in"
-						data-zzload-source-img="./images/640x320/03.jpg"
-						data-zzload-source-srcset="./images/960x480/03.jpg 1.5x, ./images/1280x640/03.jpg 2x"
-						src='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" width="640" height="320"&gt;&lt;/svg&gt;'
-					/>
-				</div>
-				<pre
-					data-src="./code-samples/img-03.html"
-					data-download-link
-					data-download-link-label="Download example file"
-				></pre>
-				<pre
-					data-src="./code-samples/fade-in.css"
-					data-download-link
-					data-download-link-label="Download example file"
-				></pre>
-			</div>
-
-			<div class="center gap js-preview-status">
 				<div id="error-loading" class="name">
-					<p>error loading</p>
+					<p>Error loading</p>
 					<div class="statuses">
 						<span data-status="observed">observed</span>
 						<span data-status="processed">processed</span>
@@ -163,12 +136,54 @@
 					/>
 				</div>
 				<pre
-					data-src="./code-samples/img-04.html"
+					data-src="./code-samples/img-03.html"
 					data-download-link
 					data-download-link-label="Download example file"
 				></pre>
 				<pre
 					data-src="./code-samples/fade-in-failed.css"
+					data-download-link
+					data-download-link-label="Download example file"
+				></pre>
+			</div>
+
+			<div class="center gap js-preview-status">
+				<div id="picture-loading" class="name">
+					<p>Picture (resize your browser)</p>
+					<div class="statuses">
+						<span data-status="observed">observed</span>
+						<span data-status="processed">processed</span>
+						<span data-status="loaded">loaded</span>
+						<span data-status="failed">failed</span>
+					</div>
+				</div>
+				<div class="demo-block">
+					<picture
+						class="js-lazy-load demo-block__img fade-in"
+						data-zzload-source-sources='[{
+                            "media": "(min-width: 1280px)",
+                            "srcset": "https://via.placeholder.com/1280x720/0000FF/000000"
+                        }, {
+                            "media": "(min-width: 750px)",
+                            "srcset": "https://via.placeholder.com/800x450/7878ff/000000"
+                        }]'
+					>
+						<img
+							alt
+							width="640"
+							height="360"
+							data-zzload-source-img="https://via.placeholder.com/640x360/a5a5fe/000000"
+							src='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"&gt;&lt;/svg&gt;'
+						/>
+					</picture>
+				</div>
+				<pre
+					data-src="./code-samples/picture-01.html"
+					data-download-link
+					data-download-link-label="Download example file"
+				></pre>
+				<pre
+					data-src="./code-samples/fade-in.css"
 					data-download-link
 					data-download-link-label="Download example file"
 				></pre>
@@ -199,7 +214,7 @@
 
 			<div class="center gap js-preview-status">
 				<div id="container-in-view" class="name">
-					<p>Container intersect</p>
+					<p>Container InView/OutView</p>
 					<div class="statuses">
 						<span data-status="observed">observed</span>
 						<span data-status="processed">processed</span>
@@ -235,24 +250,7 @@
 				// demo elements
 				var observer = zzLoad('.js-lazy-load', {
 					clearSourceAttrs: true,
-					setSourcesOnlyOnLoad: true,
-					// onProcess: function (element) {
-					// 	console.group('zz-load process:');
-					// 	console.log(element);
-					// 	console.groupEnd();
-					// },
-					onLoad: function (element, source) {
-						console.group('zz-load loaded:');
-						console.log(element);
-						console.log('loaded source: ' + source);
-						console.groupEnd();
-					},
-					// onError: function (element, source) {
-					// 	console.group('zz-load failed:');
-					// 	console.log(element);
-					// 	console.log('source failure: ' + source);
-					// 	console.groupEnd();
-					// }
+					setSourcesOnlyOnLoad: true
 				});
 				observer.observe();
 

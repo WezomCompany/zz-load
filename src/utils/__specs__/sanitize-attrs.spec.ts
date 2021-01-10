@@ -1,4 +1,4 @@
-import sanitize from '../sanitize';
+import sanitizeAttrs from '../sanitize-attrs';
 import attrs from '../../config/attrs';
 
 describe('Should clean element', () => {
@@ -10,8 +10,8 @@ describe('Should clean element', () => {
 	element.setAttribute(attrs.sourceIframe, 'xxx');
 	element.setAttribute(attrs.sourceContainer, 'xxx');
 
-	test('By selector', () => {
-		sanitize(element);
+	test('Clean attrs', () => {
+		sanitizeAttrs(element);
 		expect(element.hasAttribute(attrs.sourceImg)).toBeFalsy();
 		expect(element.hasAttribute(attrs.sourceSrcSet)).toBeFalsy();
 		expect(element.hasAttribute(attrs.sourceBgImg)).toBeFalsy();
