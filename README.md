@@ -106,8 +106,8 @@ See in action https://wezomcompany.github.io/zz-load/
 
 If you do not know what "Progressive Enhancement" is, watch this [video from Heydon Pickering](https://briefs.video/videos/is-progressive-enhancement-dead-yet/), we assure you you will not regret.
 
-We have browsers that support Intersection Observer API, and browsers that do not support Intersection Observer API.    
-We can detect the feature and apply polyfill for API if needed.  
+> We have browsers that support Intersection Observer API, and browsers that do not support Intersection Observer API.    
+> We can detect the feature and apply polyfill for API if needed.  
 
 An example: 
     
@@ -123,12 +123,9 @@ observer.observe();
 // lazy-loading-progressive-enhancement.js
 (function () {
     if ('IntersectionObserver' in window) {
-        // Group 2
         import('./zz-load-init');
     } else {
-        // Group 3
         import('intersection-observer').then(() => {
-            // Group 2
             import('./zz-load-init')
         });
     }
@@ -155,12 +152,9 @@ Since the browser environment (for reliable verification) will not be available 
     // otherwise - initialize JS implemetation
     if (lazyLoadingElements.length > 0) {
         if ('IntersectionObserver' in window) {
-            // Group 2
             import('./zz-load-init');
         } else {
-            // Group 3
             import('intersection-observer').then(() => {
-                // Group 2
                 import('./zz-load-init')
             });
         }
