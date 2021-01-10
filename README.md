@@ -34,6 +34,8 @@ Live preview: https://wezomcompany.github.io/zz-load/
     1. [Import to your codebase](#import-to-your-codebase)
         - [ESNext](#esnext)
         - [CommonJS Version](#commonjs-version)
+1. [Progressive Enhancement](#progressive-enhancement)   
+    - [Why i need to use `zz-load` when we have native `loading` attribute?](#why-i-need-to-use-zz-load-when-we-have-native-loading-attribute)
 1. [API](#api)
 1. [Contributing](#contributing)
 1. [License](#licence)
@@ -72,6 +74,17 @@ import zzLoad from '@wezom/zz-load/dist/index.cjs';
 
 ### Usage example
 
+```html
+<img
+    alt
+    width="640"
+    height="320"
+    class="js-lazy-load"
+    data-zzload-source-img="https://placeimg.com/640/320/nature"
+    src='data:image/svg+xml,&lt;svg xmlns="http://www.w3.org/2000/svg" width="640" height="320"&gt;&lt;/svg&gt;'
+/>
+```
+
 ```js
 import zzLoad from '@wezom/zz-load';
 // create and run observer for elements
@@ -80,6 +93,80 @@ observer.observe();
 ```
 
 See in action https://wezomcompany.github.io/zz-load/
+
+[▲ Go Top](#) | [▲ Table of Content](#table-of-content)
+
+---
+
+
+
+
+
+## Progressive Enhancement
+
+If you do not know what "Progressive Enhancement" is, watch this [video from Heydon Pickering](https://briefs.video/videos/is-progressive-enhancement-dead-yet/), we assure you you will not regret.
+
+We have brothers that support Intersection Observer API, and browsers that do not support Intersection Observer API.    
+We can detect the feature and apply polyfill for API if needed.  
+
+An example: 
+    
+
+```js
+// zz-load-init.js
+import zzLoad from '@wezom/zz-load';
+const observer = zzLoad('.js-lazy-load');
+observer.observe();
+```
+
+```js
+// lazy-loading-progressive-enhancement.js
+(function () {
+    if ('IntersectionObserver' in window) {
+        // Group 2
+        import('./zz-load-init');
+    } else {
+        // Group 3
+        import('intersection-observer').then(() => {
+            // Group 2
+            import('./zz-load-init')
+        });
+    }
+})()
+```
+
+### Why I need to use `zz-load` when we have native `loading` attribute?
+
+Not all browser support native loading!
+
+If you want to make real "progressive enhancement" with browser native lazy loading as primary implementation - please consider next two circumstances:
+
+1. Not all cases can be covered with native loading
+1. You should be able to influence the template of your markup on the server.
+    
+Since the browser environment (for reliable verification) will not be available to you on the server - you can determine support of native loading baserd on the browser version by comparing with [the table caniuse.com](https://caniuse.com/loading-lazy-attr). Based on the result of the check, you can render the markup for native loading or markup for JavaScript implementation. After that, we need to extend our previous script
+
+
+```js
+// lazy-loading-progressive-enhancement.js
+(function () {
+	const lazyLoadingElements = document.querySelectorAll('.js-lazy-load');
+	// if render was for native loading implementation it should be empty
+    // otherwise - initialize JS implemetation
+    if (lazyLoadingElements.length > 0) {
+        if ('IntersectionObserver' in window) {
+            // Group 2
+            import('./zz-load-init');
+        } else {
+            // Group 3
+            import('intersection-observer').then(() => {
+                // Group 2
+                import('./zz-load-init')
+            });
+        }
+    }
+})()
+```
 
 [▲ Go Top](#) | [▲ Table of Content](#table-of-content)
 
