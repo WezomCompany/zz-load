@@ -1,5 +1,3 @@
-import attrs from '../config/attrs';
-
-export default function (element: Element, is: keyof typeof attrs) {
-	return element.hasAttribute(attrs[is]);
+export default function (element: Element, attr: string) {
+	return element.hasAttribute(attr);
 }

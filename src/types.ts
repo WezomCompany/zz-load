@@ -5,7 +5,7 @@ export interface Options {
 	setSourcesOnlyOnLoad?: boolean;
 	onProcess?(element: Element, resource?: string): void;
 	onLoad?(element: Element, resource?: string): void;
-	onError?(element: Element, resource?: string): void;
+	onFail?(element: Element, resource?: string): void;
 }
 
 export interface JQueryDuckTyping {
@@ -14,3 +14,8 @@ export interface JQueryDuckTyping {
 }
 
 export type RootElement = string | Element | Element[] | NodeList | JQueryDuckTyping;
+
+export interface Observer {
+	observe(): void;
+	triggerLoad(triggerElements: RootElement, triggerOptions?: Options): void;
+}

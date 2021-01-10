@@ -12,6 +12,7 @@ export default function (
 	} else {
 		element.setAttribute(attr, '');
 	}
-	const eventDetail = detail ? { ...detail, element } : { element };
-	element.dispatchEvent(createEvent(event, eventDetail));
+	element.dispatchEvent(
+		createEvent(event, detail ? { ...detail, element } : { element })
+	);
 }

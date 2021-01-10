@@ -32,8 +32,8 @@ export default function (element: Element, options: Options, asPromise?: boolean
 
 		function errorActions(errorEvent: ErrorEvent, resource?: string): void {
 			markAs(element, attrs.failed, events.failed, { errorEvent, resource });
-			if (options.onError !== undefined) {
-				options.onError(element, resource);
+			if (options.onFail !== undefined) {
+				options.onFail(element, resource);
 			}
 			reject(element);
 		}
