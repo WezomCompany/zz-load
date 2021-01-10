@@ -106,7 +106,7 @@ See in action https://wezomcompany.github.io/zz-load/
 
 If you do not know what "Progressive Enhancement" is, watch this [video from Heydon Pickering](https://briefs.video/videos/is-progressive-enhancement-dead-yet/), we assure you you will not regret.
 
-We have brothers that support Intersection Observer API, and browsers that do not support Intersection Observer API.    
+We have browsers that support Intersection Observer API, and browsers that do not support Intersection Observer API.    
 We can detect the feature and apply polyfill for API if needed.  
 
 An example: 
