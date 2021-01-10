@@ -147,8 +147,8 @@ Since the browser environment (for reliable verification) will not be available 
 ```js
 // lazy-loading-progressive-enhancement.js
 (function () {
-	const lazyLoadingElements = document.querySelectorAll('.js-lazy-load');
-	// if render was for native loading implementation it should be empty
+    const lazyLoadingElements = document.querySelectorAll('.js-lazy-load');
+    // if render was for native loading implementation it should be empty
     // otherwise - initialize JS implemetation
     if (lazyLoadingElements.length > 0) {
         if ('IntersectionObserver' in window) {
